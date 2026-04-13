@@ -1,7 +1,7 @@
 # SECOM Semiconductor Defect Detection
 
 ## Dataset
-UCI SECOM — 1567 samples, 590 features, 6.6% failure rate
+[UCI SECOM](https://www.kaggle.com/datasets/paresh2047/uci-semcom) — 1567 samples, 590 features, 6.6% failure rate
 
 ## Approach
 - Missing value imputation (mean)
