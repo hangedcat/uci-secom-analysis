@@ -19,4 +19,4 @@ class Input(BaseModel):
 def predict(data: Input):
     df = pd.DataFrame([data.features], columns=list(map(str, range(len(data.features)))))
     prediction = pipeline.predict(df)
-    return {'prediction': prediction.tolist()}
+    return {'prediction': prediction.tolist()} #type: ignore
