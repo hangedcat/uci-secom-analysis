@@ -7,7 +7,7 @@ import os
 
 API_KEY = os.environ["SECOM_API_KEY"]
 app = FastAPI()
-pipeline: Pipeline = joblib.load("XGB_clf.joblib")
+pipeline: Pipeline = joblib.load("finalpipe.joblib")
 
 async def verify_api_key(x_api_key: str= Header()):
     if x_api_key != API_KEY:
