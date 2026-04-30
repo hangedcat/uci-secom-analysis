@@ -22,3 +22,26 @@
 ## What didn't work
 - mutual_info_classif degraded performance
 - Increasing model complexity beyond n_estimators=300, max_depth=5 showed no improvement
+
+## Pipeline helper
+
+`drop_duplicate_columns` is a plain function you can wrap with `FunctionTransformer`.
+
+```python
+from serving.dupe_dropper import drop_duplicate_columns
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
+
+dupes = FunctionTransformer(
+    drop_duplicate_columns,
+    kw_args={"keep": "first"},
+    validate=False,
+)
+
+pipe = Pipeline([
+    ("dupes", dupes),
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("selector", SelectKBest(score_func=f_classif, k=90)),
+    ("model", XGBClassifier()),
+])
+```
